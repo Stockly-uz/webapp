@@ -5,9 +5,9 @@ export function applyTheme(settings: OrganizationSettings) {
 
   if (settings.color_primary) {
     root.style.setProperty('--color-primary', settings.color_primary);
-    // Генерируем light/dark варианты через opacity
     root.style.setProperty('--color-primary-light', settings.color_primary + 'CC');
     root.style.setProperty('--color-primary-dark', settings.color_primary + '99');
+    root.style.setProperty('--color-header', settings.color_primary);
   }
   if (settings.color_background) {
     root.style.setProperty('--color-background', settings.color_background);

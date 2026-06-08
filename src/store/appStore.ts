@@ -35,11 +35,21 @@ export const useAppStore = create<AppState>((set) => ({
       const tg = window.Telegram?.WebApp;
 
       tg?.ready();
+      tg?.expand();
       tg?.disableVerticalSwipes();
 
       if (tg?.platform === 'android' || tg?.platform === 'ios') {
-        tg.expand();
         tg.requestFullscreen?.();
+
+        await new Promise<void>((resolve) => {
+          const handler = () => {
+            tg.offEvent('fullscreenChanged', handler);
+            resolve();
+          };
+          tg.onEvent('fullscreenChanged', handler);
+          setTimeout(resolve, 500);
+        });
+
         document.documentElement.style.setProperty('--header-top-padding', '96px');
       } else {
         tg?.exitFullscreen?.();

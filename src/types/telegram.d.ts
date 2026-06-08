@@ -30,6 +30,9 @@ interface TelegramWebApp {
   disableVerticalSwipes: () => void;        
   requestFullscreen?: () => void;            
   exitFullscreen?: () => void;
+  isFullscreen?: boolean;
+  onEvent: (eventType: string, handler: () => void) => void;
+  offEvent: (eventType: string, handler: () => void) => void;
   MainButton: {
     text: string;
     color: string;

@@ -18,11 +18,11 @@ export default function HistoryPage() {
     <div className="flex flex-col">
       {/* Header */}
       <div
-        className="glass sticky top-0 z-40 px-4 pb-3"
-        style={{
-          paddingTop: 'var(--header-top-padding)',
-          borderBottom: '1px solid var(--glass-border)',
-        }}
+        className="sticky top-0 z-40 px-4 pb-3"
+          style={{
+            paddingTop: 'var(--header-top-padding)',
+            background: 'var(--color-header)',
+          }}
       >
         <h1
           style={{

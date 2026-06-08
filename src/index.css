@@ -35,6 +35,8 @@
   --bottom-nav-height: calc(64px + env(safe-area-inset-bottom));
 
   --header-top-padding: 24px;
+  --color-header: #2563EB;
+  --color-header-text: #FFFFFF;
 }
 
 /* ─── Base ───────────────────────────────────────────────────── */
