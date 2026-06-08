@@ -16,7 +16,6 @@ export default function CatalogPage() {
     <div className="flex flex-col gap-4 pb-4">
       <Header />
       <Carousel />
-      <SearchBar />
       <FilterTabs />
       <ProductGrid />
     </div>
@@ -26,22 +25,23 @@ export default function CatalogPage() {
 function Header() {
   return (
     <div
-      className="sticky top-0 z-40 px-4 pb-3"
-        style={{
-          paddingTop: 'var(--header-top-padding)',
-          background: 'var(--color-header)',
-        }}
+      className="sticky top-0 z-40 px-4 pb-3 flex flex-col gap-3"
+      style={{
+        paddingTop: 'var(--header-top-padding)',
+        background: 'var(--color-header)',
+      }}
     >
       <h1
         style={{
           fontSize: '22px',
           fontWeight: 700,
-          color: 'var(--color-header-text)',
           letterSpacing: '-0.4px',
+          color: 'var(--color-header-text)',
         }}
       >
         Каталог
       </h1>
+      <SearchBar />
     </div>
   );
 }
