@@ -28,7 +28,7 @@ export default function HistoryPage() {
           style={{
             fontSize: '22px',
             fontWeight: 700,
-            color: 'var(--color-text)',
+            color: 'var(--color-header-text)',
             letterSpacing: '-0.4px',
           }}
         >

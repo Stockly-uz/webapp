@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppStore } from './store/appStore';
 
@@ -23,7 +23,7 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="flex flex-col" style={{ minHeight: '100dvh' }}>
 
         {/* Основной контент — скролл не доходит до bottom nav */}
@@ -42,7 +42,7 @@ export default function App() {
 
         <BottomNav />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
