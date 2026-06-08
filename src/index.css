@@ -57,6 +57,11 @@ body {
   font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', sans-serif;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
+
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  touch-action: pan-y
 }
 
 #root {

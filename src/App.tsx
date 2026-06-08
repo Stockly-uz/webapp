@@ -26,12 +26,12 @@ export default function App() {
     <HashRouter>
       <div className="flex flex-col" style={{ minHeight: '100dvh' }}>
 
-        {/* Основной контент — скролл не доходит до bottom nav */}
         <main
           className="flex-1 overflow-y-auto"
           style={{ paddingBottom: 'var(--bottom-nav-height)' }}
         >
           <Routes>
+            <Route path="*" element={<Navigate to="/catalog" replace />} />
             <Route path="/" element={<Navigate to="/catalog" replace />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/cart" element={<CartPage />} />
