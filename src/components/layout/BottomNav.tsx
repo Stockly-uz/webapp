@@ -124,7 +124,7 @@ export default function BottomNav() {
           maxWidth: '400px',
           height: '60px',
           borderRadius: '20px',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.8) inset',
           border: '1px solid var(--glass-border)',
           pointerEvents: 'all',
           padding: '0 8px',
