@@ -6,12 +6,11 @@ import type { ProductFilter } from '../../../types';
 import { useHaptic } from '../../../hooks/useHaptic';
 import { Sparkles, Flame, Tag, Bookmark } from 'lucide-react';
 
-const FILTERS: { key: ProductFilter; label: string; icon?: React.ReactNode }[] = [
-  { key: 'all',   label: 'Все' },
-  { key: 'new',   label: 'Новинки', icon: <Sparkles size={13} /> },
-  { key: 'hit',   label: 'Хиты',    icon: <Flame size={13} /> },
-  { key: 'sale',  label: 'Скидки',  icon: <Tag size={13} /> },
-  { key: 'brand', label: 'Бренды',  icon: <Bookmark size={13} /> },
+const FILTERS: { key: ProductFilter; label: string; icon: React.ReactNode }[] = [
+  { key: 'new',   label: 'Новинки', icon: <Sparkles size={15} /> },
+  { key: 'hit',   label: 'Хиты',    icon: <Flame size={15} /> },
+  { key: 'sale',  label: 'Скидки',  icon: <Tag size={15} /> },
+  { key: 'brand', label: 'Бренды',  icon: <Bookmark size={15} /> },
 ];
 
 export default function FilterTabs() {
@@ -35,61 +34,44 @@ export default function FilterTabs() {
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 px-4">
 
-      {/* Островок фильтров */}
-      <div className="px-4">
-        <div
-          className="flex items-center"
-          style={{
-            background: 'var(--color-surface)',
-            borderRadius: 'var(--radius-lg)',
-            padding: '4px',
-            boxShadow: '0 1px 4px var(--color-shadow)',
-            gap: '2px',
-          }}
-        >
-          {FILTERS.map((f) => {
-            const isActive = f.key === 'brand'
-              ? activeFilter === 'brand'
-              : activeFilter === f.key;
+      {/* Сетка 2x2 */}
+      <div className="grid grid-cols-2 gap-2">
+        {FILTERS.map((f) => {
+          const isActive = f.key === 'brand'
+            ? activeFilter === 'brand'
+            : activeFilter === f.key;
 
-            return (
-              <button
-                key={f.key}
-                onClick={() => handleFilter(f.key)}
-                className="flex items-center justify-center gap-1"
-                style={{
-                  flex: 1,
-                  padding: '7px 4px',
-                  borderRadius: '10px',
-                  fontSize: '12px',
-                  fontWeight: isActive ? 600 : 400,
-                  background: isActive ? 'var(--color-primary)' : 'transparent',
-                  color: isActive ? '#fff' : 'var(--color-text-secondary)',
-                  border: 'none',
-                  transition: 'all 0.2s ease',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {f.icon && (
-                  <span style={{ display: 'flex', alignItems: 'center', opacity: isActive ? 1 : 0.6 }}>
-                    {f.icon}
-                  </span>
-                )}
-                {f.label}
-              </button>
-            );
-          })}
-        </div>
+          return (
+            <button
+              key={f.key}
+              onClick={() => handleFilter(f.key)}
+              className="flex items-center gap-2"
+              style={{
+                padding: '12px 16px',
+                borderRadius: 'var(--radius-md)',
+                fontSize: '14px',
+                fontWeight: 600,
+                background: isActive
+                  ? 'var(--color-primary)'
+                  : 'var(--color-surface)',
+                color: isActive ? '#fff' : 'var(--color-text)',
+                border: 'none',
+                boxShadow: '0 1px 4px var(--color-shadow)',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <span style={{ opacity: isActive ? 1 : 0.5 }}>{f.icon}</span>
+              {f.label}
+            </button>
+          );
+        })}
       </div>
 
       {/* Островок брендов */}
       {showBrands && brands.length > 0 && (
-        <div
-          className="px-4 overflow-x-auto"
-          style={{ scrollbarWidth: 'none' }}
-        >
+        <div className="overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
           <div
             className="flex gap-1 w-fit"
             style={{
@@ -132,7 +114,6 @@ export default function FilterTabs() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

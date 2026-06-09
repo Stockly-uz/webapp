@@ -32,7 +32,7 @@
   --radius-xl: 28px;
 
   /* Bottom nav height — учитываем safe area на iPhone */
-  --bottom-nav-height: calc(64px + env(safe-area-inset-bottom));
+  --bottom-nav-height: calc(84px + env(safe-area-inset-bottom));
 
   --header-top-padding: 24px;
   --color-header: #2563EB;

@@ -107,19 +107,34 @@ export default function BottomNav() {
   const haptic = useHaptic();
 
   return (
-    <nav
-      className="glass fixed bottom-0 left-0 right-0 z-50"
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 flex justify-center"
       style={{
-        paddingBottom: 'env(safe-area-inset-bottom)',
-        borderTop: '1px solid var(--glass-border)',
+        paddingBottom: 'calc(env(safe-area-inset-bottom) + 12px)',
+        paddingLeft: '16px',
+        paddingRight: '16px',
+        pointerEvents: 'none',
       }}
     >
-      <div className="flex items-center justify-around h-16">
+      {/* Островок */}
+      <nav
+        className="glass flex items-center justify-around"
+        style={{
+          width: '100%',
+          maxWidth: '400px',
+          height: '60px',
+          borderRadius: '20px',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
+          border: '1px solid var(--glass-border)',
+          pointerEvents: 'all',
+          padding: '0 8px',
+        }}
+      >
         {tabs.map((tab) => (
           <NavLink
             key={tab.path}
             to={tab.path}
-            onClick={() => haptic.select()}  // вибрация при тапе
+            onClick={() => haptic.select()}
             className="flex flex-col items-center justify-center gap-1 flex-1 h-full relative"
             style={({ isActive }) => ({
               color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)',
@@ -143,20 +158,14 @@ export default function BottomNav() {
                     </span>
                   )}
                 </div>
-                <span
-                  style={{
-                    fontSize: '10px',
-                    fontWeight: isActive ? 600 : 400,
-                    letterSpacing: '0.01em',
-                  }}
-                >
+                <span style={{ fontSize: '10px', fontWeight: isActive ? 600 : 400 }}>
                   {tab.label}
                 </span>
               </>
             )}
           </NavLink>
         ))}
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
