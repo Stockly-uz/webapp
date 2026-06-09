@@ -12,11 +12,8 @@ export default function App() {
   const { init, isLoading } = useAppStore();
 
   useEffect(() => {
-    init(); // Telegram initData → JWT + загрузка настроек организации
+    init();
   }, []);
-
-  // Применяем цвета организации в CSS переменные
-  // (логика внутри init, но на случай SSR/dev — дефолты уже в index.css)
 
   if (isLoading) {
     return <Splash />;
@@ -46,17 +43,69 @@ export default function App() {
   );
 }
 
-// Сплэш пока грузится initData / настройки
+
 function Splash() {
+  const settings = useAppStore((s) => s.settings);
+
   return (
     <div
-      className="flex items-center justify-center"
-      style={{ height: '100dvh', background: 'var(--color-background)' }}
+      className="flex flex-col items-center justify-center gap-4"
+      style={{
+        height: '100dvh',
+        background: 'var(--color-header)',
+      }}
     >
+      {settings?.name ? (
+        <h1
+          style={{
+            fontSize: '28px',
+            fontWeight: 700,
+            color: '#fff',
+            letterSpacing: '-0.5px',
+          }}
+        >
+          {settings.name}
+        </h1>
+      ) : (
+        <div
+          className="animate-pulse"
+          style={{
+            width: '56px',
+            height: '56px',
+            borderRadius: '16px',
+            background: 'rgba(255,255,255,0.3)',
+          }}
+        />
+      )}
+
       <div
-        className="w-12 h-12 rounded-2xl animate-pulse"
-        style={{ background: 'var(--color-primary)' }}
-      />
+        style={{
+          width: '32px',
+          height: '3px',
+          borderRadius: '100px',
+          background: 'rgba(255,255,255,0.3)',
+          overflow: 'hidden',
+          position: 'absolute',
+          bottom: '48px',
+        }}
+      >
+        <div
+          style={{
+            height: '100%',
+            borderRadius: '100px',
+            background: '#fff',
+            animation: 'slide 1.2s ease-in-out infinite',
+          }}
+        />
+      </div>
+
+      <style>{`
+        @keyframes slide {
+          0% { width: 0%; margin-left: 0%; }
+          50% { width: 100%; margin-left: 0%; }
+          100% { width: 0%; margin-left: 100%; }
+        }
+      `}</style>
     </div>
   );
 }
