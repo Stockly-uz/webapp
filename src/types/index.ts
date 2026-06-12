@@ -14,11 +14,16 @@ export interface OrganizationSettings {
 export interface User {
   id: number;
   telegram_id: number;
-  first_name: string;
-  last_name: string | null;
+  full_name: string;
   username: string | null;
-  phone: string | null;
-  avatar: string | null;
+  email: string | null;
+  phone_number: string | null;
+  lang: string | null;
+  address: string | null;
+  gender: string | null;
+  birth_date: string | null;
+  organization_id: number;
+  is_active: boolean;
 }
 
 // ─── Category / Brand ─────────────────────────────────────────

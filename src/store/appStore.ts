@@ -14,6 +14,7 @@ interface AppState {
 
   init: () => Promise<void>;
   setToken: (token: string) => void;
+  setUser: (user: User) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -24,7 +25,8 @@ export const useAppStore = create<AppState>((set) => ({
   isSubscriptionActive: true,
   error: null,
   deepLinkProductId: null, 
-
+  
+  setUser: (user) => set({ user }),
   setToken: (token) => {
     localStorage.setItem('token', token);
     set({ token });
