@@ -8,6 +8,7 @@ interface AppState {
   user: User | null;
   settings: OrganizationSettings | null;
   isLoading: boolean;
+  isSubscriptionActive: boolean;
   error: string | null;
   deepLinkProductId: number | null; 
 
@@ -20,6 +21,7 @@ export const useAppStore = create<AppState>((set) => ({
   user: null,
   settings: null,
   isLoading: true,
+  isSubscriptionActive: true,
   error: null,
   deepLinkProductId: null, 
 
@@ -73,6 +75,8 @@ export const useAppStore = create<AppState>((set) => ({
       const settings = await settingsApi.getSettings();
       applyTheme(settings);
       set({ settings });
+
+      set({ settings, isSubscriptionActive: settings.is_active });
 
     } catch (err) {
       console.error('Init failed:', err);

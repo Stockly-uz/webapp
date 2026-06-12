@@ -7,6 +7,7 @@ export interface OrganizationSettings {
   color_background: string;
   color_surface: string;
   color_text: string;
+  is_active: boolean;
 }
 
 // ─── User ─────────────────────────────────────────────────────

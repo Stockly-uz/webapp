@@ -1,6 +1,7 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppStore } from './store/appStore';
+import { LockKeyhole } from 'lucide-react'
 
 import BottomNav from './components/layout/BottomNav';
 import CatalogPage from './pages/Catalog/CatalogPage';
@@ -9,7 +10,7 @@ import HistoryPage from './pages/History/HistoryPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 
 export default function App() {
-  const { init, isLoading } = useAppStore();
+  const { init, isLoading, isSubscriptionActive } = useAppStore();
 
   useEffect(() => {
     init();
@@ -17,6 +18,10 @@ export default function App() {
 
   if (isLoading) {
     return <Splash />;
+  }
+
+  if (!isSubscriptionActive) {
+    return <SubscriptionExpired />;
   }
 
   return (
@@ -108,4 +113,56 @@ function Splash() {
       `}</style>
     </div>
   );
+}
+
+function SubscriptionExpired() {
+  const settings = useAppStore((s) => s.settings);
+
+  return (
+    <div
+      className="flex flex-col items-center justify-center gap-4 px-8 text-center"
+      style={{
+        height: '100dvh',
+        background: 'var(--color-header)',
+      }}
+    >
+      <div
+        style={{
+          width: '64px',
+          height: '64px',
+          borderRadius: '20px',
+          background: 'rgba(255,255,255,0.15)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '28px',
+        }}
+      >
+        <LockKeyhole size={28} color="#fff" />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <h1
+          style={{
+            fontSize: '20px',
+            fontWeight: 700,
+            color: '#fff',
+            letterSpacing: '-0.3px',
+          }}
+        >
+          {settings?.name ?? 'Магазин'}
+        </h1>
+        <p
+          style={{
+            fontSize: '14px',
+            color: 'rgba(255,255,255,0.7)',
+            lineHeight: '1.5',
+          }}
+        >
+          У магазина истекла подписка.{'\n'}
+          Пожалуйста, продлите её чтобы активировать магазин.
+        </p>
+      </div>
+    </div>
+  )
 }
